@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Models;
 
@@ -11,10 +11,14 @@ class admin extends Model
     protected $table = 'admin';
 
     protected $fillable = [
-        'nama_barang',
-        'tanggal_masuk_barang',
-        'jenis_barang',
+        'gambar',
+        'posisi',
         'lokasi',
+        'merk_barang',
+        'type_barang',
+        'jumlah_barang',
+        'tanggal_masuk_barang',
+        
     ];
 
 }

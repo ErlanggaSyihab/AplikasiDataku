@@ -123,4 +123,29 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application Service Providers
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify a list of service providers for your application.
+    | These service providers will be loaded on every request to your
+    | application. Feel free to add your own service providers here.
+    |
+    */
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Facades
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify a list of facades for your application.
+    | These facades will be available throughout your application.
+    |
+    */
+
+
+
 ];

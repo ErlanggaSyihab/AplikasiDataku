@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('admin', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_barang');
-            $table->string('tanggal_masuk_barang');
-            $table->string('jenis_barang');
+            $table->string('gambar');
+            $table->string('posisi');
             $table->string('lokasi');
+            $table->string('merk_barang');
+            $table->string('type_barang');
+            $table->string('jumlah_barang');
+            $table->date('tanggal_masuk_barang');
+            
 
             $table->timestamps();
         });

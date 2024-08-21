@@ -1,4 +1,44 @@
 <x-app-layout>
+
+    <style>
+
+        /* tampilan hasil jumlah lingkaran */
+.quick-count-container {
+    display: flex; /* Menggunakan Flexbox */
+    flex-direction: column; /* Mengatur elemen untuk berjajar secara vertikal */
+    align-items: center; /* Menyelaraskan elemen secara horizontal di tengah */
+    gap: 100px; /* Jarak antara elemen secara vertikal */
+    text-align: center; /* Menyelaraskan teks di tengah */
+}
+
+.quick-count-item {
+    display: flex;
+    flex-direction: column; /* Menumpuk lingkaran dan teks secara vertikal */
+    align-items: center; /* Menyelaraskan lingkaran dan teks secara horizontal di tengah */
+}
+
+.quick-count-circle {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #bbcbfd;
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.quick-count-text {
+    margin-top: 10px; /* Jarak antara lingkaran dan teks */
+}
+
+
+
+
+    </style>
+
     <header>
         {{-- awal bagian bg gambar --}}
         <div class=" card text-bg-dark">
@@ -37,19 +77,19 @@
                         </div>
                     </article>
     
-                    <article class="py-8 max-w-screen-md mx-auto"> <!-- Tambahkan mx-auto di sini -->
-                        <h1 class="mb-5 text-3xl tracking-tight font-bold text-gray-900">Detail Aplikasi</h1>
+                    <article class="py-8 max-w-screen-md mx-auto border-b "> <!-- Tambahkan mx-auto di sini -->
+                        <h1 class="mb-5 text-2xl tracking-tight font-bold text-gray-900">Detail Aplikasi</h1>
                     </article>
     
                     {{-- card awal  --}}
-                    <div class="container">
-                        <div class="row row-cols-1 row-cols-md-5 g-4">
+                    <div class="container border-b border-gray-400 mx-auto">
+                        <div class="row row-cols-1 row-cols-md-5 g-4 mb-10">
                             <!-- Card 1 -->
                             <div class="col">
                                 <div class="d-flex flex-column align-items-center text-center">
                                     <img src="{{ asset('img/satu.png') }}" class="w-10 mb-5" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title mb-2 text-gray-700"><b>Mengoptimalkan Pengelolaan Stok</b></h5>
+                                        <h5 class="card-title mb-2 text-gray-500"><b>Mengoptimalkan Pengelolaan Stok</b></h5>
                                         <p class="card-text text-sm text-gray-500">Aplikasi ini membantu dalam mengoptimalkan pengelolaan stok,
                                             Menghindari kekurangan atau kelebihan stok.</p>
                                     </div>
@@ -60,7 +100,7 @@
                                 <div class="d-flex flex-column align-items-center text-center">
                                     <img src="{{ asset('img/dua.png') }}" class="w-10 mb-5" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title mb-2 text-gray-700"><b>Meningkatkan Produktivitas</b></h5>
+                                        <h5 class="card-title mb-2 text-gray-500"><b>Meningkatkan Produktivitas</b></h5>
                                         <p class="card-text text-sm text-gray-500">Aplikasi pendataan barang dapat membantu mengurangi waktu,
                                             dan biaya dalam mengelola stok, sehingga meningkatkan 
                                             produktivitas kegiatan usaha.</p>
@@ -70,9 +110,9 @@
                             <!-- Card 3 -->
                             <div class="col">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="{{ asset('img/tiga.png') }}" class="w-9 mb-5" alt="Inventaris">
+                                    <img src="{{ asset('img/tiga.png') }}" class="w-10 mb-5" alt="Inventaris">
                                     <div class="card-body">
-                                        <h5 class="card-title mb-2 text-gray-700"><b class="texs-sm">Membantu dalam Audit Inventaris</b></h5>
+                                        <h5 class="card-title mb-2 text-gray-500"><b class="texs-sm">Membantu dalam Audit Inventaris</b></h5>
                                         <p class="card-text text-sm text-gray-500">Aplikasi ini dapat membantu dalam audit Inventaris
                                             dengan menyediakan laporan yang akurat dan lengkap
                                             tentang stok barang.</p>
@@ -84,7 +124,7 @@
                                 <div class="d-flex flex-column align-items-center text-center">
                                     <img src="{{ asset('img/empat.png') }}" class="w-10 mb-5" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title mb-2 text-gray-700"><b>Mengoptimalkan Pengelolaan Gudang</b></h5>
+                                        <h5 class="card-title mb-2 text-gray-500"><b>Mengoptimalkan Pengelolaan Gudang</b></h5>
                                         <p class="card-text text-sm text-gray-500">Aplikasi ini membantu dalam mengoptimalkan pengelolaan
                                             Rak, Gudang, dan Supplier, sehingga memudahkan pengelolaan 
                                             Stok dan Operasional Gudang.</p>
@@ -96,7 +136,7 @@
                                 <div class="d-flex flex-column align-items-center text-center">
                                     <img src="{{ asset('img/lima.png') }}" class="w-10 mb-5" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title mb-2 text-gray-700"><b>Membantu dalam Pencatatan Transaksi</b></h5>
+                                        <h5 class="card-title mb-2 text-gray-500"><b>Membantu dalam Pencatatan Transaksi</b></h5>
                                         <p class="card-text text-sm text-gray-500">Aplikasi Pendataan barang dapat membantu dalam 
                                             pencatatan transaksi, termasuk pengeluaran dan 
                                             penerimaan barang, sehingga memudahkan pengelolaan
@@ -106,6 +146,29 @@
                             </div>
                         </div>
                     </div>
+                    {{-- menampilkan jumlah data --}}
+
+                    <article class="py-8 max-w-screen-md mx-auto"> <!-- Tambahkan mx-auto di sini -->
+                        <h1 class="mb-4 text-2xl tracking-tight font-bold text-gray-900">Jumlah Daftar Barang</h1>
+                    </article>
+
+                        {{-- Menampilkan jumlah data secara keseluruhan --}}
+                        <div class="container mt-4">
+                            <div class="quick-count-container">
+                                <div class="quick-count-item">
+                                    <div class="quick-count-circle">
+                                        {{ $totalData }}
+                                    </div>
+                                    <p class="quick-count-text">Jumlah Data Keseluruhan</p>
+                                </div>
+                                <div class="quick-count-item">
+                                    <div class="quick-count-circle">
+                                        {{ $weeklyData }}
+                                    </div>
+                                    <p class="quick-count-text">Jumlah Data Baru ditambah seminggu ini</p>
+                                </div>
+                            </div>
+                        </div>
                     {{-- card akhir --}}
 
                      <!-- Bagian Informasi Kontak -->
