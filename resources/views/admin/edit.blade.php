@@ -1,55 +1,61 @@
 @extends('admin.layoutAdmin')
 
-@section('judul', 'Edit barang yang anda inginkan')
+@section('judul', 'Edit Barang yang Anda Inginkan Cek Kembali dan pastikan semua Form sudah terisi')
 
 @section('konten')
 
-
-
-<form action="{{ route('admin.update', $admin->id) }}" method="post">
+<form action="{{ route('admin.update', $admin->id) }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
   @csrf
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <label for="posisi" class="form-label">posisi</label>
-        <input type="text" name="posisi" class="form-control" value="{{$admin->posisi}}" id="posisi" placeholder="Masukkan posisi Barang">
-      </div>
+  @method('POST') {{-- Ganti dengan PUT jika menggunakan method PUT di route --}}
+  <div class="flex flex-wrap -mx-4">
+    
+    <div class="w-full md:w-1/3 px-4 mb-4">
+      <label for="posisi" class="form-label text-lg font-semibold text-gray-700">Posisi</label>
+      <select name="posisi" class="form-select bg-light border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="posisi">
+        <option value="">Pilih Posisi Barang disimpan</option>
+        <option value="DPMPTSP">DPMPTSP</option>
+        <option value="MAl PELAYANAN PUBLIK KOTA BANDUNG">MAl PELAYANAN PUBLIK KOTA BANDUNG</option>
+      </select>
+    </div>
 
-      <div class="col-md-4">
-        <label for="lokasi" class="form-label">Lokasi</label>
-        <input type="text" name="lokasi" class="form-control" value="{{$admin->lokasi}}" id="lokasi" placeholder="Masukkan Lokasi barang">
-      </div>
+    <div class="w-full md:w-1/3 px-4 mb-4">
+      <label for="lokasi" class="form-label font-semibold">Lokasi</label>
+      <input type="text" name="lokasi" class="form-control border-gray-300 rounded-lg shadow-sm" value="{{ old('lokasi', $admin->lokasi) }}" id="lokasi" placeholder="Masukkan Lokasi barang">
+    </div>
 
+    <div class="w-full md:w-1/3 px-4 mb-4">
+      <label for="merk_barang" class="form-label font-semibold">Merk Barang</label>
+      <input type="text" name="merk_barang" class="form-control border-gray-300 rounded-lg shadow-sm" id="merk_barang" value="{{ old('merk_barang', $admin->merk_barang) }}" placeholder="Masukkan merk Barang">
+    </div>
 
-      <div class="col-md-4">
-        <label for="merk_barang" class="form-label">merk_barang</label>
-        <input type="text" name="merk_barang" class="form-control" id="merk_barang" value="{{$admin->merk_barang}}" placeholder="Masukkan merk Barang">
-      </div>
+    <div class="w-full md:w-1/3 px-4 mb-4">
+      <label for="type_barang" class="form-label font-semibold">Tipe Barang</label>
+      <input type="text" name="type_barang" class="form-control border-gray-300 rounded-lg shadow-sm" id="type_barang" value="{{ old('type_barang', $admin->type_barang) }}" placeholder="Masukkan tipe Barang">
+    </div>
 
-      <div class="col-md-4">
-        <label for="type_barang" class="form-label">type_barang</label>
-        <input type="text" name="type_barang" class="form-control" id="type_barang" value="{{$admin->type_barang}}" placeholder="Masukkan type Barang">
-      </div>
+    <div class="w-full md:w-1/3 px-4 mb-4">
+      <label for="jumlah_barang" class="form-label font-semibold">Jumlah Barang</label>
+      <input type="text" name="jumlah_barang" class="form-control border-gray-300 rounded-lg shadow-sm" id="jumlah_barang" value="{{ old('jumlah_barang', $admin->jumlah_barang) }}" placeholder="Masukkan jumlah Barang">
+    </div>
 
-      <div class="col-md-5 mb-3">
-        <label for="gambar" class="form-label">Upload Gambar</label>
-        <input type="file" name="gambar" class="form-control" id="gambar">
-      </div>
-      
-      <div class="col-md-4">
-        <label for="mejumlah_barang" class="form-label">jumlah_barang</label>
-        <input type="text" name="jumlah_barang" class="form-control" id="jumlah_barang" value="{{$admin->jumlah_barang}}" placeholder="Masukkan jumlah Barang">
-      </div>
+    <div class="w-full md:w-1/3 px-4 mb-4">
+      <label for="tanggal_masuk_barang" class="form-label font-semibold">Tanggal Masuk Barang</label>
+      <input type="date" name="tanggal_masuk_barang" class="form-control border-gray-300 rounded-lg shadow-sm" value="{{ old('tanggal_masuk_barang', $admin->tanggal_masuk_barang) }}" id="tanggal_masuk_barang">
+    </div>
 
-      <div class="col-md-4">
-        <label for="tanggal_masuk_barang" class="form-label">Tanggal Masuk Barang</label>
-        <input type="date" name="tanggal_masuk_barang" class="form-control" value="{{$admin->tanggal_masuk_barang}}" id="tanggal_masuk_barang" placeholder="Masukkan Tanggal Masuk Barang">
-      </div>
+    <div class="w-full md:w-1/3 px-4 mb-4">
+      <label for="gambar" class="form-label font-semibold">Upload Gambar</label>
+      <input type="file" name="gambar" class="form-control border-gray-300 rounded-lg shadow-sm" id="gambar">
+      {{-- Tampilkan gambar yang ada jika ada --}}
+      @if($admin->gambar)
+        <div class="mt-2">
+          <img src="{{ asset('images/' . $admin->gambar) }}" alt="Gambar Barang" class="img-thumbnail rounded shadow-sm" style="max-width: 150px;">
+        </div>
+      @endif
+    </div>
 
-      
-      <div class="col-12 mt-3">
-        <button type="submit" class="btn btn-primary">Edit</button>
-      </div>
+    <div class="w-full mt-4 text-right px-4">
+      <button type="submit" class="btn btn-primary px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-200">Edit</button>
     </div>
   </div>
 </form>

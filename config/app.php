@@ -2,6 +2,9 @@
 
 return [
 
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -13,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Dataku'),
 
     /*
     |--------------------------------------------------------------------------
@@ -145,6 +148,20 @@ return [
     | These facades will be available throughout your application.
     |
     */
+
+
+    // untuk mencetak pdf
+// Service Providers lainnya...
+ // Aliases lainnya...
+    // 'providers' => [
+     
+    // Barryvdh\DomPDF\ServiceProvider::class,
+    // ],
+        
+    // 'aliases' => [
+    
+    // 'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
+    //  ],
 
 
 

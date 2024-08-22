@@ -12,12 +12,45 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/cssbootstrap.css') }}">
 </head>
 <body>
-        <!-- Konten Utama -->
-        <div class="content">
-            <h1 class="text-center">@yield('judul', 'Default judul')</h1>
-            <hr>
-            @yield('konten')
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4 sticky-top">
+        <div class="container">
+            <a class="navbar-brand mb-2" href="#"><img src="{{ asset('img/DatakuLogo.png') }}" alt="Logo" width="220px"></a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Dropdown Action -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" id="actionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Action
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="actionDropdown">
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Home</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.HalamanBarang') }}">Halaman Barang</a></li>
+                            <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <!-- Konten Utama -->
+    <div class="content container">
+        <p class=" font-bold fs-4 fw-bold" href="#">@yield('judul','default judul')</p>
+        @yield('konten')
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
+
+        {{-- <h1 class="text-center">@yield('judul', 'Default judul')</h1>
+        <hr> --}}

@@ -1,54 +1,62 @@
 @extends('admin.layoutAdmin')
 
-@section('judul','Tambahkan data yang anda inginkan')
+@section('judul', 'Tambahkan Barang yang Anda Inginkan, Cek Kembali dan pastikan semua Form Terisi')
 
 @section('konten')
 
 <form action="{{ route('admin.submit') }}" method="post" enctype="multipart/form-data">
   @csrf
-  <div class="container">
+  <div class="container my-5">
     <div class="row">
-      <div class="col-md-5 mb-3">
-        <label for="posisi" class="form-label">Posisi</label>
-        <select name="posisi" class="form-control" id="posisi">
+      <!-- Posisi -->
+      <div class="col-12 mb-4">
+        <label for="posisi" class="form-label text-lg font-semibold text-gray-700">Posisi</label>
+        <select name="posisi" class="form-select bg-light border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="posisi">
           <option value="">Pilih Posisi Barang disimpan</option>
           <option value="DPMPTSP">DPMPTSP</option>
-          <option value="MAl PELAYANAN PUBLIK KOTA BANDUNG">MAl PELAYANAN PUBLIK KOTA BANDUNG</option>
+          <option value="MAl PELAYANAN PUBLIK KOTA BANDUNG">MPP</option>
         </select>
       </div>
       
-      <div class="col-md-5 mb-3">
-        <label for="lokasi" class="form-label">Lokasi</label>
-        <input type="text" name="lokasi" class="form-control" id="lokasi" placeholder="Masukkan Lokasi Barang">
+      <!-- Lokasi -->
+      <div class="col-12 mb-4">
+        <label for="lokasi" class="form-label text-lg font-semibold text-gray-700">Lokasi</label>
+        <input type="text" name="lokasi" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="lokasi" placeholder="Masukkan Lokasi Barang">
       </div>
 
-      <div class="col-md-5 mb-3">
-        <label for="merk_barang" class="form-label">Merk Barang</label>
-        <input type="text" name="merk_barang" class="form-control" id="merk_barang" placeholder="Masukkan Merk Barang">
+      <!-- Merk Barang -->
+      <div class="col-12 mb-4">
+        <label for="merk_barang" class="form-label text-lg font-semibold text-gray-700">Merk Barang</label>
+        <input type="text" name="merk_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="merk_barang" placeholder="Masukkan Merk Barang">
       </div>
 
-      <div class="col-md-5 mb-3">
-        <label for="type_barang" class="form-label">Type Barang</label>
-        <input type="text" name="type_barang" class="form-control" id="type_barang" placeholder="Masukkan Type Barang">
+      <!-- Type Barang -->
+      <div class="col-12 mb-4">
+        <label for="type_barang" class="form-label text-lg font-semibold text-gray-700">Tipe Barang</label>
+        <input type="text" name="type_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="type_barang" placeholder="Masukkan Tipe Barang">
       </div>
 
-      <div class="col-md-5 mb-3">
-        <label for="jumlah_barang" class="form-label">Jumlah Barang</label>
-        <input type="number" name="jumlah_barang" class="form-control" id="jumlah_barang" placeholder="Masukkan Jumlah Barang">
+      <!-- Jumlah Barang -->
+      <div class="col-12 mb-4">
+        <label for="jumlah_barang" class="form-label text-lg font-semibold text-gray-700">Jumlah Barang</label>
+        <input type="number" name="jumlah_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="jumlah_barang" placeholder="Masukkan Jumlah Barang">
       </div>
 
-      <div class="col-md-5 mb-3">
-        <label for="tanggal_masuk_barang" class="form-label">Tanggal Masuk Barang</label>
-        <input type="date" name="tanggal_masuk_barang" class="form-control" id="tanggal_masuk_barang" placeholder="Masukkan Tanggal Masuk Barang">
+      <!-- Tanggal Masuk Barang -->
+      <div class="col-12 mb-4">
+        <label for="tanggal_masuk_barang" class="form-label text-lg font-semibold text-gray-700">Tanggal Masuk Barang</label>
+        <input type="date" name="tanggal_masuk_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="tanggal_masuk_barang">
       </div>
 
-      <div class="col-md-5 mb-3">
-        <label for="gambar" class="form-label">Upload Gambar</label>
-        <input type="file" name="gambar" class="form-control" id="gambar">
+      <!-- Upload Gambar -->
+      <div class="col-12 mb-4">
+        <label for="gambar" class="form-label text-lg font-semibold text-gray-700">Upload Gambar</label>
+        <input type="file" name="gambar" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="gambar">
       </div>
 
-      <div class="col-12 mt-3">
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <!-- Submit Button -->
+      <div class="w-full mt-4 text-right px-4">
+        <button type="submit" class="btn btn-primary px-4 py-2 shadow-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Submit</button>
       </div>
     </div>
   </div>

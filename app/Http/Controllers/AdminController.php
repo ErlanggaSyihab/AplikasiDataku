@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -11,12 +12,17 @@ class AdminController extends Controller
 {
     public function HalamanBarang()
     {
-        $admin = Admin::get();
-        $totalData = Admin::count(); // Hitung jumlah total data
-        return view('admin.HalamanBarang', compact('admin', 'totalData'));
+        $admin = Admin::all();
+        $totalData = Admin::sum('jumlah_barang'); // Hitung jumlah total barang
+        $weeklyData = Admin::where('created_at', '>=', now()->subWeek())
+                            ->sum('jumlah_barang'); // Hitung jumlah barang yang ditambahkan dalam seminggu terakhir
+        
+        return view('admin.HalamanBarang', compact('admin', 'totalData', 'weeklyData'));
     }
+    
 
-    public function Tambah() {
+    public function Tambah()
+    {
         return view('admin.Tambah');
     }
 
@@ -28,7 +34,7 @@ class AdminController extends Controller
             'lokasi' => 'required|string|max:255',
             'merk_barang' => 'required|string|max:255',
             'type_barang' => 'required|string|max:255',
-            'jumlah_barang' => 'required|integer|max:255',
+            'jumlah_barang' => 'required|integer',
             'tanggal_masuk_barang' => 'required|date',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -61,13 +67,13 @@ class AdminController extends Controller
 
     public function edit($id)
     {
-        $admin = Admin::find($id);
+        $admin = Admin::findOrFail($id);
         return view('admin.edit', compact('admin'));
     }
 
     public function update(Request $request, $id)
     {
-        $admin = Admin::find($id);
+        $admin = Admin::findOrFail($id);
 
         // Validasi input
         $request->validate([
@@ -75,7 +81,7 @@ class AdminController extends Controller
             'lokasi' => 'required|string|max:255',
             'merk_barang' => 'required|string|max:255',
             'type_barang' => 'required|string|max:255',
-            'jumlah_barang' => 'required|integer|max:255',
+            'jumlah_barang' => 'required|integer',
             'tanggal_masuk_barang' => 'required|date',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -123,41 +129,53 @@ class AdminController extends Controller
     }
 
     public function search(Request $request)
-    {
-        $query = Admin::query();
+{
+    $query = Admin::query();
 
-        // Filter berdasarkan nama_barang, jenis_barang, dan tanggal_masuk_barang
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where('posisi', 'like', "%{$search}%")
-                  ->orWhere('lokasi', 'like', "%{$search}%")
-                  ->orWhere('merk_barang', 'like', "%{$search}%")
-                  ->orWhere('type_barang', 'like', "%{$search}%")
-                  ->orWhere('jumlah_barang', 'like', "%{$search}%")
-                  ->orWhereDate('tanggal_masuk_barang', $search);
-        }
-
-        $admin = $query->get();
-        $totalData = $query->count(); // Hitung jumlah total data berdasarkan filter pencarian
-
-        return view('admin.HalamanBarang', compact('admin', 'totalData'));
+    // Filter berdasarkan nama_barang, jenis_barang, dan tanggal_masuk_barang
+    if ($request->has('search')) {
+        $search = $request->input('search');
+        $query->where('posisi', 'like', "%{$search}%")
+              ->orWhere('lokasi', 'like', "%{$search}%")
+              ->orWhere('merk_barang', 'like', "%{$search}%")
+              ->orWhere('type_barang', 'like', "%{$search}%")
+              ->orWhere('jumlah_barang', 'like', "%{$search}%")
+              ->orWhereDate('tanggal_masuk_barang', $search);
     }
 
-    // Method baru untuk dashboard
-    public function dashboard()
-    {
-        // Hitung jumlah total data
-        $totalData = Admin::count();
+    $admin = $query->get();
+    // Menghitung jumlah barang berdasarkan hasil pencarian
+    $totalData = $query->sum('jumlah_barang');
 
-        // Dapatkan tanggal awal dan akhir minggu ini
-        $startOfWeek = Carbon::now()->startOfWeek();
-        $endOfWeek = Carbon::now()->endOfWeek();
+    return view('admin.HalamanBarang', compact('admin', 'totalData'));
+}
 
-        // Query untuk menghitung jumlah barang yang masuk minggu ini
-        $weeklyData = Admin::whereBetween('tanggal_masuk_barang', [$startOfWeek, $endOfWeek])->count();
 
-        return view('dashboard', compact('totalData', 'weeklyData'));
-    }
+public function dashboard()
+{
+    // Hitung jumlah total data
+    $totalData = Admin::sum('jumlah_barang');
+
+    // Dapatkan tanggal awal dan akhir minggu ini
+    $startOfWeek = Carbon::now()->startOfWeek()->toDateString();
+    $endOfWeek = Carbon::now()->endOfWeek()->toDateString();
+    
+    // Query untuk menghitung jumlah barang yang masuk minggu ini
+    $weeklyData = Admin::whereBetween('tanggal_masuk_barang', [$startOfWeek, $endOfWeek])->sum('jumlah_barang');
+    // dd($startOfWeek, $endOfWeek, $weeklyData);
+    // dd([
+    //     'startOfWeek' => $startOfWeek,
+    //     'endOfWeek' => $endOfWeek,
+    //     'weeklyData' => $weeklyData,
+    // ]);
+    
+
+    return view('dashboard', compact('totalData', 'weeklyData'));
+}
+
+
+
+
 
     private function resizeImage($sourcePath, $destinationPath, $width, $height)
     {
@@ -196,5 +214,24 @@ class AdminController extends Controller
 
         imagedestroy($imageSource);
         imagedestroy($imageResized);
+    }
+
+    // exspor pdf
+    
+//     public function exportPdf()
+// {
+//     // Ambil semua data admin
+//     $admin = Admin::all();
+
+//     // Generate PDF dengan view 'admin.export'
+//     $pdf = PDF::loadView('admin.export', compact('admin'));
+
+//     // Download file PDF dengan nama 'admin_data.pdf'
+//     return $pdf->download('admin_data.pdf');
+// }
+
+
+    public function exportPdf() {
+        return view('admin.exportPdf');
     }
 }

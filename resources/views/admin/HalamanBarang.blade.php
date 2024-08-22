@@ -28,24 +28,25 @@
         .content {
             flex-grow: 1;
             padding: 15px;
+            
         }
-        /* Styling untuk card dengan ukuran yang lebih besar */
         .card {
             display: flex;
             flex-direction: row;
             width: 100%;
             max-width: 500px; /* Maksimal lebar card */
-            height: 250px; /* Tinggi card */
+            height: 260px; /* Tinggi card */
             border: 1px solid #cac6c6;
             border-radius: 0.5rem;
             overflow: hidden;
-            margin-bottom: 1rem;
+            margin-top:;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .card-img-top {
             width: 40%; /* Lebar gambar card */
             height: 100%; /* Tinggi gambar mengikuti tinggi card */
-            object-fit: cover; /* Memastikan gambar mengisi area tanpa mengubah rasio aspek */
+            object-fit: contain; /* Menjaga gambar tidak terpotong */
+            background-color: #f8f9fa; /* Warna latar belakang jika gambar tidak mengisi seluruh area */
         }
         .card-body {
             flex: 1;
@@ -84,6 +85,11 @@
             justify-content: center;
             align-items: flex-start;
         }
+        .user-greeting {
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid blue; /* Garis biru di bawah teks */
+        }
     </style>
     @if (session('success'))
     <div class="alert alert-success">
@@ -92,41 +98,69 @@
     @endif
 </head>
 <body class="bg-gray-200">
-    {{-- Awak navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-custom bg-gray-200 sticky-top border-b border-gray-300">
-        <div class="container-fluid">
+    {{-- Awal navbar --}}
+    <nav class="navbar navbar-expand-lg navbar-custom bg-gray-200 border-b border-gray-300 sticky-top ">
+        <div class="container-fluid d-flex align-items-center">
+            <!-- Logo -->
             <a class="navbar-brand mb-2" href="#"><img src="{{ asset('img/DatakuLogo.png') }}" alt="Logo" width="220px"></a>
+    
+            <!-- Navbar Toggler -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            {{-- kembali ke home --}}
-            <a href="{{ route('dashboard') }}">
-                <img src="{{ asset('img/home.png') }}" alt="Home">
-            </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a href="{{ route('admin.Tambah') }}">
-                            <button type="button" class="btn text-white bg-gray-500 hover:bg-blue-900 px-2 py-1 rounded">Tambah</button>
-                        </a>
+    
+            <!-- Navbar Items -->
+            <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
+                <!-- Left side items (Dropdowns) -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
+                    <!-- Dropdown for Actions -->
+                    <li class="nav-item dropdown ms-3">
+                        <a class="nav-link dropdown-toggle user-greeting fw-bold text-dark border-bottom border-1 border-secondary" href="#" id="actionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Action
+                        </a>                                                                     
+                        <ul class="dropdown-menu" aria-labelledby="actionsDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('admin.Tambah') }}">
+                                    Tambah
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="">  
+                                    Cetak Pdf
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href=" ">
+                                    Cetak Excel
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
+                
+                <!-- Search Form -->
                 <div class="ms-3">
                     <form class="d-flex" role="search" method="GET" action="{{ route('admin.search') }}">
                         <input class="form-control me-2" type="search" name="search" placeholder="Search by Name, Type, or Date" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>                  
+                        <button type="submit" class="btn text-white bg-blue-900 hover:bg-blue-500 px-2 py-1 rounded">Search</button>
+                    </form>
                 </div>
             </div>
         </div>
     </nav>
+    
     <hr></hr>
     
     <!-- Konten Utama -->
     <div class="container">
         <div class="row">
             @foreach ($admin as $no => $data)
-            <div class="col-md-6 mb-4 d-flex justify-content-center mt-10">
+            <div class="col-md-6  d-flex justify-content-center mt-2">
                 <div class="card">
                     <img src="{{ asset($data->gambar ? 'images/' . $data->gambar : 'images/default.png') }}" class="card-img-top" alt="gambar">
                     <div class="card-body">
@@ -139,11 +173,11 @@
                             <strong>Tanggal Masuk Barang:</strong> {{ $data->tanggal_masuk_barang }}
                         </p>
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('admin.edit', $data->id) }}" class="btn btn-warning text-white bg-yellow-300 hover:bg-yellow-600">Edit</a>
+                            <a href="{{ route('admin.edit', $data->id) }}" class="btn text-white bg-blue-900 hover:bg-yellow-400">Edit</a>
                             <form action="{{ route('admin.delete', $data->id) }}" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus item ini?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn text-white bg-red-400 hover:bg-gray-500">Hapus</button>
+                                <button type="submit" class="btn text-white bg-blue-900 hover:bg-red-500">Hapus</button>
                             </form>
                         </div>
                     </div>
@@ -151,21 +185,17 @@
             </div>
             @endforeach
         </div>
-    </div>
-
-    {{-- cetak to pdf dan exel --}}
-    <div class="d-flex justify-content-end">
-        <a href="" class="me-2">
-            <button type="button" class="btn btn-danger">PDF</button>
-        </a>
-        <a href="">
-            <button type="button" class="btn btn-success">Excel</button>
-        </a>
-    </div>    
+    </div>   
 
     {{-- Menampilkan jumlah data secara keseluruhan --}}
-    <h1 class="font-bold text-2xl">
+    <h1 class="font-bold text-2xl text-center py-5">
         Jumlah data Keseluruhan adalah : {{ $totalData }}
     </h1>
+
+    <!-- Include Bootstrap JS and Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
