@@ -14,21 +14,32 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <p style="display: flex; align-items: center;">
-                        <img class="w-200 h-200" src="{{ asset('img/logoDataku.png') }}" alt="Logo Dataku" width="200px">
-                    </p>
-                    
-                    
-                </a>
-            </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+
+
+    <body class="font-sans text-gray-900 antialiased">
+        <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    
+            <!-- Gambar Admin -->
+            <div class="hidden sm:block mr-32"> <!-- Menambahkan margin kanan -->
+                <img class="h-94 mb-9" src="{{ asset('img/Admin.png') }}" alt="" style="width: 400px;">
+            </div>
+    
+            <!-- Kotak Login -->
+            <div class=" w-full sm:max-w-md px-6 py-14 bg-white  shadow-lg shadow-blue-800/50  overflow-hidden sm:rounded-lg ">
+                <div>
+                    <a href="/">
+                        <p style="display: flex; align-items: center; justify-content: center;">
+                            <img class="w-72 h-94 mb-9" src="{{ asset('img/DATAKU.png') }}" alt="Logo Dataku">
+                        </p>
+                    </a>
+                </div>
                 {{ $slot }}
             </div>
+    
         </div>
     </body>
+    
+    
+    
 </html>

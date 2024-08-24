@@ -8,7 +8,7 @@
 
     <title>Halaman Barang</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Pastikan penulisan asset benar -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/cssbootstrap.css') }}">
 </head>
 <body>
@@ -25,13 +25,12 @@
                 <ul class="navbar-nav ms-auto">
                     <!-- Dropdown Action -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" id="actionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="nav-link dropdown-toggle px-3 py-1 rounded-lg text-gray-900 bg-white border border-gray-200" id="actionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Action
-                        </a>
+                        </div>
                         <ul class="dropdown-menu" aria-labelledby="actionDropdown">
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">Home</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.HalamanBarang') }}">Halaman Barang</a></li>
-                            <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
                         </ul>
                     </li>
                 </ul>

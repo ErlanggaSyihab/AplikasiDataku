@@ -174,25 +174,34 @@
                      <!-- Bagian Informasi Kontak -->
                      <div class="d-flex justify-content-center text-center mt-32">
                         <div class="d-flex align-items-center me-4">
+                            <a href=""></a>
                             <img src="{{ asset('img/telp.png') }}" alt="" class="me-2 w-8 "> 
                             <span>+6221-1167-6557</span>
                         </div>
                         
                         <div class="d-flex align-items-center me-4">
+                            <a href="https://www.instagram.com/mpp.bdg/">
                             <img src="{{ asset('img/instagram.png') }}" alt="" class="me-2 w-8 "> 
+                            </a>
                             <span>Mpp.Bandung</span>
+                            
                         </div>
                         
                         <div class="d-flex align-items-center">
+                            <a href="http://wa.me/+6282127274022">
                             <img src="{{ asset('img/wa.png') }}" alt="" class="me-2 w-8"> 
+                            </a>
                             <span>+6221-1167-6557</span>
+                            
                         </div>
                     </div>
     
                     <div class="text-center mt-4 mb-10">
-                        <p style="color: blue; filter: brightness(30%);">
+                        <a href="https://www.google.com/maps?sca_esv=2346eec244b06c07&rlz=1C1BNSD_enID1037ID1037&output=search&q=mal+pelayanan+publik+kota+bandung&source=lnms&fbs=AEQNm0CTI4ghiYmMI-A67QciKvwhEVBEZaKMmvvXvCV-ZrcsMC7fInYod8119VhZWGoIKvaBRAmXpE2oBiMAIoS-pqwOqaVW2vgadIanVmWgspEvUAZ-NYYR4BzcWQNJqcJ_fTeCVn__uKVFkMcBVir0g2w4nt7RL8_D-qMYl5hwMyNB3K--TJUNfJQ8WxvO_TI7isuSabZ3n6YAq3THKnStvfPt3JZy-Q&entry=mc&ved=1t:200715&ictx=111">
+                        <p style="color: blue; filter: brightness(100%);">
                             Jalan Cianjut No.34, Kacapiring, Kec.Batu-nunggal, Kota.Bandung, Jawa Barat 40271
                         </p>
+                        </a>
                     </div>
                     <!-- Akhir Bagian Informasi Kontak -->
 

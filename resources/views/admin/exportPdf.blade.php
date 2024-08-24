@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Data</title>
+    <title>Data Admin</title>
     <style>
         table {
             width: 100%;
@@ -19,10 +19,21 @@
         th {
             background-color: #f2f2f2;
         }
+        .summary {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Data Admin</h1>
+    <h1>Ini adalah Data dari Halaman Barang</h1>
+    
+    <!-- Summary section -->
+    <div class="summary">
+        <p><strong>Total Jumlah Barang Keseluruhan:</strong> {{ $totalData }}</p>
+        <p><strong>Total Jumlah Barang Minggu Ini:</strong> {{ $weeklyData }}</p>
+    </div>
+
+    <!-- Data table -->
     <table>
         <thead>
             <tr>

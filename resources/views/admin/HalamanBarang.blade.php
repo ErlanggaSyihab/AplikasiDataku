@@ -12,19 +12,13 @@
     <!-- Pastikan penulisan asset benar -->
     <link rel="stylesheet" href="{{ asset('bootstrap/css/cssbootstrap.css') }}">
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-        }
+
         .container-fluid {
             height: 100%;
             display: flex;
             flex-direction: row;
         }
-        .navbar {
-            flex-shrink: 0;
-            margin-right: 15px; 
-        }
+    
         .content {
             flex-grow: 1;
             padding: 15px;
@@ -85,11 +79,7 @@
             justify-content: center;
             align-items: flex-start;
         }
-        .user-greeting {
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 2px solid blue; /* Garis biru di bawah teks */
-        }
+        
     </style>
     @if (session('success'))
     <div class="alert alert-success">
@@ -98,65 +88,78 @@
     @endif
 </head>
 <body class="bg-gray-200">
-    {{-- Awal navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-custom bg-gray-200 border-b border-gray-300 sticky-top ">
-        <div class="container-fluid d-flex align-items-center">
-            <!-- Logo -->
-            <a class="navbar-brand mb-2" href="#"><img src="{{ asset('img/DatakuLogo.png') }}" alt="Logo" width="220px"></a>
-    
-            <!-- Navbar Toggler -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+{{-- Awal navbar --}}
+<nav class="navbar navbar-expand-lg navbar-custom bg-gray-200 border-b border-gray-300 sticky top-0 z-50">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <!-- Logo -->
+        <a class="navbar-brand mb-2" href="#"><img src="{{ asset('img/DatakuLogo.png') }}" alt="Logo" width="220px"></a>
+
+        <!-- Button Tambah -->
+        <div>
+            <button class="btn text-white bg-blue-800 hover:bg-green-800 px-3 py-1 rounded-md items-center justify-center ">
+                <a href="{{ route('admin.Tambah') }}" class="no-underline text-white text-sm text-center">Tambah</a>
             </button>
-    
-            <!-- Navbar Items -->
-            <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
-                <!-- Left side items (Dropdowns) -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
-                    <!-- Dropdown for Actions -->
-                    <li class="nav-item dropdown ms-3">
-                        <a class="nav-link dropdown-toggle user-greeting fw-bold text-dark border-bottom border-1 border-secondary" href="#" id="actionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Action
-                        </a>                                                                     
-                        <ul class="dropdown-menu" aria-labelledby="actionsDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('admin.Tambah') }}">
-                                    Tambah
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard') }}">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="">  
-                                    Cetak Pdf
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href=" ">
-                                    Cetak Excel
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Items -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
+                <!-- Additional Navbar Items if any -->
+            </ul>
+            
+            <!-- Search Form -->
+            <div class="d-flex align-items-center ms-auto">
+                <form class="d-flex" role="search" method="GET" action="{{ route('admin.search') }}">
+                    <input class="form-control px-3 py-1 me-3" type="search" name="search" placeholder="Cari data barang disini" aria-label="Search">
+                    <button type="submit" class="btn text-white bg-blue-900 hover:bg-blue-500 px-2 py-1 rounded">Search</button>
+                </form>
                 
-                <!-- Search Form -->
-                <div class="ms-3">
-                    <form class="d-flex" role="search" method="GET" action="{{ route('admin.search') }}">
-                        <input class="form-control me-2" type="search" name="search" placeholder="Search by Name, Type, or Date" aria-label="Search">
-                        <button type="submit" class="btn text-white bg-blue-900 hover:bg-blue-500 px-2 py-1 rounded">Search</button>
-                    </form>
+                <!-- Dropdown for Actions -->
+                <div class="nav-item dropdown ms-4"> <!-- Reduced margin to move it closer to the search button -->
+                    <div class="nav-link dropdown-toggle px-3 py-1 rounded-md text-gray-600 bg-white border border-gray-200" id="actionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Action
+                    </div>                                                                                             
+                    <ul class="dropdown-menu" aria-labelledby="actionsDropdown">
+                        <li>
+                            
+                            <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                Profile
+                            </a>
+                           
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                Dashboard
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </nav>
-    
-    <hr></hr>
+    </div>
+</nav>
+
     
     <!-- Konten Utama -->
+
+
+    
+    <div class="flex flex-col items-center space-y-4 mb-8">
+        <!-- Judul di atas -->
+        <h1 class="font-bold text-2xl mt-8 mb-1">Halaman Daftar Barang</h1>
+        
+        <!-- Link Cetak PDF dengan gambar di samping kanan -->
+        <a class="flex items-center space-x-2" href="{{ route('admin.exportPdf') }}">
+            <img src="{{ asset('img/pdf.png') }}" alt="Cetak PDF" style="width: 30px">
+            <p><b>Cetak PDF</b></p>
+            
+        </a> 
+    </div>
+    
     <div class="container">
         <div class="row">
             @foreach ($admin as $no => $data)

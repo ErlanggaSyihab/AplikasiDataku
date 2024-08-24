@@ -162,12 +162,7 @@ public function dashboard()
     
     // Query untuk menghitung jumlah barang yang masuk minggu ini
     $weeklyData = Admin::whereBetween('tanggal_masuk_barang', [$startOfWeek, $endOfWeek])->sum('jumlah_barang');
-    // dd($startOfWeek, $endOfWeek, $weeklyData);
-    // dd([
-    //     'startOfWeek' => $startOfWeek,
-    //     'endOfWeek' => $endOfWeek,
-    //     'weeklyData' => $weeklyData,
-    // ]);
+
     
 
     return view('dashboard', compact('totalData', 'weeklyData'));
@@ -218,20 +213,23 @@ public function dashboard()
 
     // exspor pdf
     
-//     public function exportPdf()
-// {
-//     // Ambil semua data admin
-//     $admin = Admin::all();
+    public function exportPdf()
+{
+    // Ambil semua data admin
+    $admin = Admin::all();
 
-//     // Generate PDF dengan view 'admin.export'
-//     $pdf = PDF::loadView('admin.export', compact('admin'));
+    // Hitung total data dan data mingguan
+    $totalData = Admin::sum('jumlah_barang');
+    $startOfWeek = Carbon::now()->startOfWeek()->toDateString();
+    $endOfWeek = Carbon::now()->endOfWeek()->toDateString();
+    $weeklyData = Admin::whereBetween('tanggal_masuk_barang', [$startOfWeek, $endOfWeek])->sum('jumlah_barang');
 
-//     // Download file PDF dengan nama 'admin_data.pdf'
-//     return $pdf->download('admin_data.pdf');
-// }
+    // Generate PDF dengan view 'admin.export'
+    $pdf = PDF::loadView('admin.exportPdf', compact('admin', 'totalData', 'weeklyData'));
+
+    // Download file PDF dengan nama 'admin_data.pdf'
+    return $pdf->download('admin_data.pdf');
+}
 
 
-    public function exportPdf() {
-        return view('admin.exportPdf');
-    }
 }

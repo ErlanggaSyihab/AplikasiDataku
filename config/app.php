@@ -2,9 +2,6 @@
 
 return [
 
-
-
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -137,32 +134,20 @@ return [
     |
     */
 
+    // unutk exspor pdf
+
+    'providers' => [
+
+        Barryvdh\DomPDF\ServiceProvider::class,
+    ],
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Application Facades
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify a list of facades for your application.
-    | These facades will be available throughout your application.
-    |
-    */
 
-
-    // untuk mencetak pdf
-// Service Providers lainnya...
- // Aliases lainnya...
-    // 'providers' => [
-     
-    // Barryvdh\DomPDF\ServiceProvider::class,
-    // ],
+    'aliases' => [
         
-    // 'aliases' => [
-    
-    // 'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
-    //  ],
-
+        'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
+    ],
 
 
 ];
+

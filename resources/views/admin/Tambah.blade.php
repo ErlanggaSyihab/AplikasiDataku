@@ -11,47 +11,47 @@
       <!-- Posisi -->
       <div class="col-12 mb-4">
         <label for="posisi" class="form-label text-lg font-semibold text-gray-700">Posisi</label>
-        <select name="posisi" class="form-select bg-light border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="posisi">
+        <select name="posisi" class="form-select bg-light border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="posisi" required>
           <option value="">Pilih Posisi Barang disimpan</option>
           <option value="DPMPTSP">DPMPTSP</option>
-          <option value="MAl PELAYANAN PUBLIK KOTA BANDUNG">MPP</option>
+          <option value="MPP">MPP</option>
         </select>
       </div>
       
       <!-- Lokasi -->
       <div class="col-12 mb-4">
         <label for="lokasi" class="form-label text-lg font-semibold text-gray-700">Lokasi</label>
-        <input type="text" name="lokasi" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="lokasi" placeholder="Masukkan Lokasi Barang">
+        <input type="text" name="lokasi" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="lokasi" placeholder="Masukkan Lokasi Barang" required>
       </div>
 
       <!-- Merk Barang -->
       <div class="col-12 mb-4">
         <label for="merk_barang" class="form-label text-lg font-semibold text-gray-700">Merk Barang</label>
-        <input type="text" name="merk_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="merk_barang" placeholder="Masukkan Merk Barang">
+        <input type="text" name="merk_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="merk_barang" placeholder="Masukkan Merk Barang" required>
       </div>
 
       <!-- Type Barang -->
       <div class="col-12 mb-4">
         <label for="type_barang" class="form-label text-lg font-semibold text-gray-700">Tipe Barang</label>
-        <input type="text" name="type_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="type_barang" placeholder="Masukkan Tipe Barang">
+        <input type="text" name="type_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="type_barang" placeholder="Masukkan Tipe Barang" required>
       </div>
 
       <!-- Jumlah Barang -->
       <div class="col-12 mb-4">
         <label for="jumlah_barang" class="form-label text-lg font-semibold text-gray-700">Jumlah Barang</label>
-        <input type="number" name="jumlah_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="jumlah_barang" placeholder="Masukkan Jumlah Barang">
+        <input type="number" name="jumlah_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="jumlah_barang" placeholder="Masukkan Jumlah Barang" required>
       </div>
 
       <!-- Tanggal Masuk Barang -->
       <div class="col-12 mb-4">
         <label for="tanggal_masuk_barang" class="form-label text-lg font-semibold text-gray-700">Tanggal Masuk Barang</label>
-        <input type="date" name="tanggal_masuk_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="tanggal_masuk_barang">
+        <input type="date" name="tanggal_masuk_barang" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="tanggal_masuk_barang" required>
       </div>
 
       <!-- Upload Gambar -->
       <div class="col-12 mb-4">
         <label for="gambar" class="form-label text-lg font-semibold text-gray-700">Upload Gambar</label>
-        <input type="file" name="gambar" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="gambar">
+        <input type="file" name="gambar" class="form-control border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="gambar" required>
       </div>
 
       <!-- Submit Button -->

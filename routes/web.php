@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('login');
-});
+})->name('login');
+
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware(['auth', 'verified']);
 
@@ -25,7 +26,9 @@ Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('adm
 Route::delete('/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
 Route::get('/admin/search', [AdminController::class, 'search'])->name('admin.search');
 Route::get('/admin/halaman-barang', [AdminController::class, 'HalamanBarang'])->name('admin.HalamanBarang');
-// Route::get('/admin/export-pdf', [AdminController::class, 'exportPdf'])->name('admin.exportPdf');
+Route::get('/admin/export-pdf', [AdminController::class, 'exportPdf'])->name('admin.exportPdf');
+
+
 
 
 
