@@ -184,12 +184,14 @@ npm install
 bash
 composer install
 
+---
 ### Fitur-Fitur yang terdapat pada Aplikasi diantarannya
 - Fitur Registrasi :
 - Fitur Login :
 - Fitur Mengubah Profile
 - Fitur Mengubah Password
 - Fitur Menghapus Akun
+---
 
 ### Pindah ke Branch Masing - Masing
 
@@ -219,4 +221,5 @@ git push origin nama-branch
 
 ---
 
-Last Edited 05/08/2024 Adan Ahmad Erlangga
+Last Edited 05/08/2024 Adan Ahmad Erlangga 
+waktu pengerjaan selama satu bulan = 05 Agustus 2024 - 05 September 2024
